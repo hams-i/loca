@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realtime Location</title>
+</head>
+<style>
+    body{
+        background-color: #6d6d6d;
+        color:#f5f5f5;
+    }
+</style>
+<body>
+    <div class="details"></div>
+
+    <script>
+        /* const options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0,
+        };
+
+        function success(pos) {
+            const crd = pos.coords;
+
+            console.log("Your current position is:");
+            console.log(`Latitude : ${crd.latitude}`);
+            console.log(`Longitude: ${crd.longitude}`);
+            console.log(`More or less ${crd.accuracy} meters.`);
+        }
+
+        function error(err) {
+            nsole.warn(`ERROR(${err.code}): ${err.message}`);
+        }
+
+        navigator.geolocation.getCurrentPosition(success, error, options);
+ */
+        var reqcount = 0;
+        navigator.geolocation.watchPosition(succesCallBack, err, options);
+
+        const details = document.querySelector(".details");
+
+        function succesCallBack(position){
+            const { accuracy, latitude, longitude, altitude, heading, speed} = position.coords;
+            reqcount ++;
+            details.innerHTML = "";
+            details.innerHTML += "Accurary: "+accuracy+ "<br>";
+            details.innerHTML += "Latitude: "+latitude+ "<br>";
+            details.innerHTML += "Longitude: "+longitude+ "<br>";
+            details.innerHTML += "Altitude: "+altitude+ "<br>";
+            details.innerHTML += "heading: "+heading+ "<br>";
+            details.innerHTML += "Speed: "+speed+ "<br>";
+            details.innerHTML += "reqcount: "+reqcount+ "<br>"; 
+        }
+        function err(error){
+            console.log(error);
+        }
+        var options = {
+            enableHighAccuracy: false,
+            timeout : 500,
+            maximumAge: 0
+        } 
+        /* const options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0,
+        };
+
+        function success(pos) {
+            const { accurary, latitude, longitude, alt, head, speed} = pos.coords;
+
+            console.log("Your current position is:");
+            console.log(`Latitude : ${longitude}`);
+        }
+
+        function error(err) {
+            console.warn(`ERROR(${err.code}): ${err.message}`);
+        }
+
+        navigator.geolocation.getCurrentPosition(success, error, options);
+ */
+        /* navigator.geolocation.getCurrentPosition(position =>{
+            const {lat, long } = position.coords;
+            console.log(lat, long);
+        }); */
+        
+        /* var reqcount = 0;
+        navigator.geolocation.watchPosition(succesCallBack, err, options);
+
+        const details = document.querySelector(".details");
+
+        function succesCallBack(position){
+            const { accurary, lat, long, alt, head, speed} = position.coords;
+            reqcount ++;
+            details.innerHTML = "";
+            details.innerHTML += "Accurary: "+accurary+ "<br>";
+            details.innerHTML += "Lat: "+lat+ "<br>";
+            details.innerHTML += "Long: "+long+ "<br>";
+            details.innerHTML += "Alt: "+alt+ "<br>";
+            details.innerHTML += "Head: "+head+ "<br>";
+            details.innerHTML += "Spead: "+speed+ "<br>";
+            details.innerHTML += "reqcount: "+reqcount+ "<br>";
+        }
+        function err(error){
+            console.log(error);
+        }
+        var options = {
+            enableHighAccurarcy: false,
+            timeout : 500,
+            maximumAge: 0
+        } */
+    </script>
+</body>
+</html>
